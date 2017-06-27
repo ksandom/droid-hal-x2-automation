@@ -1,0 +1,8 @@
+#!/bin/bash
+# Build the middleware components.
+
+
+set -e
+
+rpm/dhd/helpers/build_packages.sh
+

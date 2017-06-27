@@ -1,0 +1,9 @@
+#!/bin/bash
+# Build everything
+
+set -e
+
+/home/ksandom/changed/buildKernel
+/home/ksandom/changed/buildMiddleware
+/home/ksandom/changed/buildImage
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <project path="device/leeco/x2"
+name="ksandom/android_device_leeco_x2"
+revision="cm-13.0" />
+  <project path="kernel/leeco/msm8996"
+name="ksandom/android_kernel_leeco_msm8996"
+revision="cm-13.0" />
+  <project path="device/leeco/msm8996-common"
+name="ksandom/android_device_leeco_msm8996-common"
+revision="cm-13.0" />
+  <project path="device/qcom/sepolicy"
+name="LineageOS/android_device_qcom_sepolicy"
+revision="cm-13.0" />
+  <project path="device/qcom/common"
+name="LineageOS/android_device_qcom_common"
+revision="cm-13.0" />
+  <project path="hybris/droid-configs"
+name="ksandom/droid-config-x2"
+revision="master" />
+  <project path="rpm"
+name="ksandom/droid-hal-x2"
+revision="master" />
+  <project path"hybris/droid-hal-version-x2"
+name="ksandom/droid-hal-version-x2"
+revision="master" />
+  <project path"automation"
+name="ksandom/droid-hal-x2-automation"
+revision="master" />
+</manifest>
+
