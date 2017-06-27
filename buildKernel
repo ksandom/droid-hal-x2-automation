@@ -13,7 +13,7 @@ if [ "$1" != "quick" ]; then
 fi
 
 # Bring in any non-committed changes.
-~/changed/patchChanges
+automation/patchChanges
 
 # Configure
 breakfast $DEVICE

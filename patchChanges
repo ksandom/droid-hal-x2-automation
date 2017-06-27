@@ -2,16 +2,16 @@
 # Patch all the changes into the tree.
 
 # Stuff for the x2
-cp -v ~/changed/fixup-mountpoints $ANDROID_ROOT/hybris/hybris-boot/
-cp -v ~/changed/x2.xml $ANDROID_ROOT/.repo/local_manifests/
+cp -v automation/fixup-mountpoints $ANDROID_ROOT/hybris/hybris-boot/
+cp -v automation/x2.xml $ANDROID_ROOT/.repo/local_manifests/
 
 # This should be fixed in the make files. Start with product_config.mk and product.mk.
-cp -v ~/changed/lineage.mk $ANDROID_ROOT/device/leeco/x2/
+cp -v automation/lineage.mk $ANDROID_ROOT/device/leeco/x2/
 
 # This change should be committed for using the lineageOS repos. Note that there will be some impact for old devices if they are only in the old Cyanogenmod repos.
-cp -v ~/changed/roomservice.py $ANDROID_ROOT/build/tools/
+cp -v automation/roomservice.py $ANDROID_ROOT/build/tools/
 
-cp -v ~/changed/lineage_x2_defconfig $ANDROID_ROOT/kernel/leeco/msm8996/arch/arm64/configs/lineage_x2_defconfig
+cp -v automation/lineage_x2_defconfig $ANDROID_ROOT/kernel/leeco/msm8996/arch/arm64/configs/lineage_x2_defconfig
 
 # This should be fixed in the make files. Start with product_config.mk and product.mk.
 # For now I've commited this into the the repositories.

@@ -3,7 +3,7 @@
 
 set -e
 
-/home/ksandom/changed/buildKernel
-/home/ksandom/changed/buildMiddleware
-/home/ksandom/changed/buildImage
+automation/changed/buildKernel
+automation/changed/buildMiddleware
+automation/changed/buildImage
 
