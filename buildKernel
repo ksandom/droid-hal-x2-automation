@@ -1,25 +1,5 @@
 #!/bin/bash
 # Rebuild the kernel
 
-# Set up the environment
-source build/envsetup.sh
-export USE_CCACHE=1
-
-# Clean
-if [ "$1" != "quick" ]; then
-	make clean
-fi
-
-# Bring in any non-committed changes.
-automation/patchChanges
-
-# Configure
-breakfast $DEVICE
-
-# Build it
-make -j4 hybris-hal
-
-
-# Test the config
-hybris/mer-kernel-check/mer_verify_kernel_config ./out/target/product/$DEVICE/obj/KERNEL_OBJ/.config
+ubu-chroot -r $MER_ROOT/sdks/ubuntu automation/buildKernel.internal
 

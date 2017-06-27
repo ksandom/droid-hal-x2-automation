@@ -1,8 +1,6 @@
 #!/bin/bash
 # Build everything
 
-set -e
-
 automation/changed/buildKernel
 automation/changed/buildMiddleware
 automation/changed/buildImage

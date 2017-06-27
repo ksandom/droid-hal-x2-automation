@@ -1,0 +1,6 @@
+#!/bin/bash
+# Starts the ubuntu chroot.
+
+ubu-chroot -r $MER_ROOT/sdks/ubuntu
+
+
