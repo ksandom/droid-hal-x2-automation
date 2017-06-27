@@ -1,8 +1,6 @@
 #!/bin/bash
 # Rebuild the kernel
 
-set -e
-
 # Set up the environment
 source build/envsetup.sh
 export USE_CCACHE=1
