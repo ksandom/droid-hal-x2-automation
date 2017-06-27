@@ -11,16 +11,12 @@ sed -e "s|^$HA_REPO.*$|$HA_REPO --baseurl=file://$ANDROID_ROOT/droid-local-repo/
 # Prepare patterns
 hybris/droid-configs/droid-configs-device/helpers/process_patterns.sh
 
-# Let's make sure it works before going further.
-exit 0
-
 # Build the image
 RELEASE=2.1.0.10
 # EXTRA_NAME adds your custom tag. It doesn't support '.' dots in it!
 EXTRA_NAME=-ksandom-`date +%Y-%m-%d--%H%M%S`
 sudo mic create fs --arch $PORT_ARCH \
 --debug \
---runtime=native \
 --tokenmap=ARCH:$PORT_ARCH,RELEASE:$RELEASE,EXTRA_NAME:$EXTRA_NAME \
 --record-pkgs=name,url \
 --outdir=sfe-$DEVICE-$RELEASE$EXTRA_NAME \
