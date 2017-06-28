@@ -1,0 +1,21 @@
+#!/bin/bash
+# Gets the android environment setup
+
+# Get the initial structure.
+sudo mkdir -p $ANDROID_ROOT
+sudo chown -R $USER $ANDROID_ROOT
+cd $ANDROID_ROOT
+repo init -u git://github.com/mer-hybris/android.git -b hybris-13.0
+
+# Put in our manifest.
+cd ~-
+mkdir -p $ANDROID_ROOT/.repo/local_manifests
+cp x2.xml ANDROID_ROOT/.repo/local_manifests
+
+# Do the hard work.
+repo sync
+repo --fetch-submodules
+
+# Apply any changes that are not yet ready to be in the main repos.
+$ANDROID_ROOT/automation/patchChanges
+
