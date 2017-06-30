@@ -24,7 +24,7 @@ $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 PRODUCT_NAME := cm_x2
 PRODUCT_DEVICE := x2
-PRODUCT_MANUFACTURER := LeMobile
+PRODUCT_MANUFACTURER := LeEco
 PRODUCT_BRAND := LeEco
 
 PRODUCT_GMS_CLIENTID_BASE := android-letv
