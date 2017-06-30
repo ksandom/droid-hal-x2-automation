@@ -1,20 +1,28 @@
 #!/bin/bash
 # Gets the android environment setup
 
+startDir=`pwd`
+
+# Install pre-requisites.
+cd $(dirname `which gpg2`)
+sudo ln -sf gpg2 gpg
+
 # Get the initial structure.
 sudo mkdir -p $ANDROID_ROOT
 sudo chown -R $USER $ANDROID_ROOT
 cd $ANDROID_ROOT
+rm -Rf $ANDROID_ROOT/.repo
 repo init -u git://github.com/mer-hybris/android.git -b hybris-13.0
 
 # Put in our manifest.
-cd ~-
+cd "$startDir"
 mkdir -p $ANDROID_ROOT/.repo/local_manifests
-cp x2.xml ANDROID_ROOT/.repo/local_manifests
+cp x2.xml $ANDROID_ROOT/.repo/local_manifests
 
 # Do the hard work.
-repo sync
-repo --fetch-submodules
+cd $ANDROID_ROOT
+~/bin/repo sync
+~/bin/repo sync --fetch-submodules
 
 # Apply any changes that are not yet ready to be in the main repos.
 $ANDROID_ROOT/automation/patchChanges
