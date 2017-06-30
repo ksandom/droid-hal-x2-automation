@@ -4,5 +4,6 @@
 
 set -e
 
+export PORT_ARCH=armv7hl
 rpm/dhd/helpers/build_packages.sh
 
