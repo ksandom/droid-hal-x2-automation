@@ -1,0 +1,61 @@
+#!/bin/bash
+# Creates the SB env.
+# Run in MerSDK.
+
+# This is to override the CPU architecture since there isn't aarch64 available yet.
+if [ "$PORT_ARCH" == "aarch64" ]; then
+	export PORT_ARCH=armv7hl
+fi
+
+# Get 
+cd $HOME
+SFE_SB2_TARGET=$MER_ROOT/targets/$VENDOR-$DEVICE-$PORT_ARCH
+TARBALL_URL=http://releases.sailfishos.org/sdk/latest/targets/targets.json
+TARBALL=$(curl $TARBALL_URL | grep "$PORT_ARCH.tar.bz2" | cut -d\" -f4 | head -n1)
+DOWNLOADED_FILE=`basename $TARBALL`
+
+if ! [ -e "$DOWNLOADED_FILE" ]; then
+	curl -O $TARBALL
+else
+	echo "Won't download $DOWNLOADED_FILE because it already exists."	
+fi 
+
+
+# Unpack the image.
+sudo mkdir -p $SFE_SB2_TARGET
+sudo tar --numeric-owner -pxjf $(basename $TARBALL) -C $SFE_SB2_TARGET
+sudo chown -R $USER $SFE_SB2_TARGET
+
+# Fix the SSL issues.
+sudo cp -vR /etc/ssl $SFE_SB2_TARGET/etc &&
+	sudo cp -vR /etc/pki $SFE_SB2_TARGET/etc
+
+# Set up the local user.
+cd $SFE_SB2_TARGET
+grep :$(id -u): /etc/passwd >> etc/passwd
+grep :$(id -g): /etc/group >> etc/group
+
+# Configure
+sb2-init -d -L "--sysroot=/" -C "--sysroot=/" -c /usr/bin/qemu-arm-dynamic -m sdk-build -n -N -t / $VENDOR-$DEVICE-$PORT_ARCH /opt/cross/bin/$PORT_ARCH-meego-linux-gnueabi-gcc
+sb2 -t $VENDOR-$DEVICE-$PORT_ARCH -m sdk-install -R rpm --rebuilddb
+sb2 -t $VENDOR-$DEVICE-$PORT_ARCH -m sdk-install -R zypper ar -G http://repo.merproject.org/releases/mer-tools/rolling/builds/$PORT_ARCH/packages/ mer-tools-rolling
+sb2 -t $VENDOR-$DEVICE-$PORT_ARCH -m sdk-install -R zypper ref --force
+
+
+
+# Test, generally, that the sb2 environment is working.
+cd $HOME
+
+cat > main.c << EOF
+#include <stdlib.h>
+#include <stdio.h>
+int main(void) {
+printf("Hello, world!\n");
+return EXIT_SUCCESS;
+}
+EOF
+
+sb2 -t $VENDOR-$DEVICE-$PORT_ARCH gcc main.c -o test
+sb2 -t $VENDOR-$DEVICE-$PORT_ARCH ./test
+
+
