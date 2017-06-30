@@ -1,6 +1,8 @@
 #!/bin/bash
 # Patch all the changes into the tree.
 
+echo ANDROID_ROOT=$ANDROID_ROOT
+
 # Stuff for the x2
 cp -v automation/fixup-mountpoints $ANDROID_ROOT/hybris/hybris-boot/
 cp -v automation/x2.xml $ANDROID_ROOT/.repo/local_manifests/
