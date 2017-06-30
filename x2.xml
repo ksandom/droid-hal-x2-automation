@@ -21,10 +21,10 @@ revision="master" />
   <project path="rpm"
 name="ksandom/droid-hal-x2"
 revision="master" />
-  <project path"hybris/droid-hal-version-x2"
+  <project path="hybris/droid-hal-version-x2"
 name="ksandom/droid-hal-version-x2"
 revision="master" />
-  <project path"automation"
+  <project path="automation"
 name="ksandom/droid-hal-x2-automation"
 revision="master" />
 </manifest>
