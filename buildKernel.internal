@@ -8,6 +8,7 @@ export USE_CCACHE=1
 # Clean
 if [ "$1" != "quick" ]; then
 	make clean
+	rm -Rf hybris/mw/libhybris
 fi
 
 # Bring in any non-committed changes.
@@ -17,7 +18,9 @@ automation/patchChanges
 breakfast $DEVICE
 
 # Build it
-make -j4 hybris-hal
+cpuCount=`grep '^processor	' /proc/cpuinfo | wc -l`
+echo "CPU count=$cpuCount"
+make -j$cpuCount hybris-hal
 
 
 # Test the config
