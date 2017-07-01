@@ -6,7 +6,7 @@ hybris/mer-kernel-check/mer_verify_kernel_config ./out/target/product/$DEVICE/ob
 RETVAL=$?
 
 # Display something to the user
-echo -e "\n$RETVAL"
+echo -e "\nReturn value: $RETVAL"
 
 # Pass on the value so other stuff can use it if need be.
 exit $RETVAL
