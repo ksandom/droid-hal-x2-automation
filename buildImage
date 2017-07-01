@@ -2,6 +2,10 @@
 # Build the image.
 
 set -e
+now=`date +%Y-%m-%d--%H%M%S`
+
+# Short term hack until aarch64 is supported.
+export PORT_ARCH=armv7hl
 
 # Adapt the kickstart file.
 HA_REPO="repo --name=adaptation0-$DEVICE-@RELEASE@"
@@ -14,7 +18,7 @@ hybris/droid-configs/droid-configs-device/helpers/process_patterns.sh
 # Build the image
 RELEASE=2.1.0.10
 # EXTRA_NAME adds your custom tag. It doesn't support '.' dots in it!
-EXTRA_NAME=-ksandom-`date +%Y-%m-%d--%H%M%S`
+EXTRA_NAME=-ksandom-$now
 sudo mic create fs --arch $PORT_ARCH \
 --debug \
 --tokenmap=ARCH:$PORT_ARCH,RELEASE:$RELEASE,EXTRA_NAME:$EXTRA_NAME \
