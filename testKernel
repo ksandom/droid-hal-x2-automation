@@ -1,0 +1,12 @@
+#!/bin/bash
+# Test that the kernel is built with the right config choices.
+
+# Test
+hybris/mer-kernel-check/mer_verify_kernel_config ./out/target/product/$DEVICE/obj/KERNEL_OBJ/.config
+RETVAL=$?
+
+# Display something to the user
+echo -e "\n$RETVAL"
+
+# Pass on the value so other stuff can use it if need be.
+exit $RETVAL
