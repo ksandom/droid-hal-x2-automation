@@ -27,4 +27,5 @@ sudo mic create fs --arch $PORT_ARCH \
 --pack-to=sfe-$DEVICE-$RELEASE$EXTRA_NAME.tar.bz2 \
 $ANDROID_ROOT/tmp/Jolla-@RELEASE@-$DEVICE-@ARCH@.ks
 
-
+# Copy non sailfish images into the release folder incase they may be useful later.
+cp out/target/product/$DEVICE/*img sfe-$DEVICE-$RELEASE$EXTRA_NAME
