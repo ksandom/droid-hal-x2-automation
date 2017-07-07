@@ -677,7 +677,7 @@ CONFIG_DRV2604L_HAPTICS=y
 CONFIG_LETVS_CLASS=y
 
 
-# Stuff derived from  rpm/dhd/helpers/build_packages.sh
+# Stuff derived from  rpm/dhd/helpers/build_packages.sh.
 CONFIG_DEVTMPFS_MOUNT=y
 CONFIG_NET_CLS_CGROUP=y
 CONFIG_VT=y
@@ -703,7 +703,7 @@ CONFIG_NETFILTER_XT_MATCH_NFACCT=y
 CONFIG_BLK_CGROUP=y
 CONFIG_FW_LOADER_USER_HELPER=n
 
-# Stuff re-reported in a subsequent run
+# Stuff re-reported in a subsequent run.
 CONFIG_SECURITY_SELINUX_BOOTPARAM=y
 CONFIG_SECURITY_SELINUX_BOOTPARAM_VALUE=0
 CONFIG_WATCHDOG_NOWAYOUT=y
@@ -715,7 +715,11 @@ CONFIG_RTC_DRV_CMOS=y
 CONFIG_NETPRIO_CGROUP=y
 CONFIG_LBDAF=y
 
-# Stuff added after first boot attempt
+# Stuff added after first boot attempt.
 CONFIG_KEXEC_HARDBOOT=y
 CONFIG_PROC_DEVICETREE=y
+
+# Stuff that might fix the missing SWAP/MEM CGroups
+CONFIG_CPUSETS=y
+CONFIG_CGROUP_DEVICE=y
 
