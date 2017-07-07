@@ -1,0 +1,40 @@
+#!/bin/bash
+# Find the differences between the requested config and the actual config.
+
+# Get just the actual config and make it ready to be analysed.
+sort -u automation/lineage_x2_defconfig | grep = | grep -v '^#' > /tmp/config_requested
+sort -u ./out/target/product/$DEVICE/obj/KERNEL_OBJ/.config | grep = | grep -v '^#' > /tmp/config_actual
+
+
+# Figure out the differences
+differences=`diff /tmp/config_{requested,actual}`
+
+
+# Calculate statistics
+requestedCount=`cat /tmp/config_requested | wc -l`
+requestedUniqueCount=`cat /tmp/config_requested | cut -d = -f 1 | wc -l`
+let requestedDifference=$requestedCount-$requestedUniqueCount
+justDifferencesOnRequestedSide=`echo "$differences" | grep '<' | wc -l`
+
+actualCount=`cat /tmp/config_actual | wc -l`
+actualUniqueCount=`cat /tmp/config_actual | cut -d = -f 1 | wc -l`
+let actualDifference=$actualCount-$actualUniqueCount
+
+let same=$requestedCount-$justDifferencesOnRequestedSide
+let requestedPercent=$same*100/$requestedUniqueCount
+let actualPercent=$same*100/$actualUniqueCount
+
+
+
+# Display differences
+echo "< requested"
+echo "> actual"
+echo "$differences"
+
+
+# Display statistics
+echo
+echo "Statistics
+    Same        $same
+    Requested   $requestedCount-$requestedUniqueCount=$requestedDifference >> $requestedPercent% present in actual config.
+    Actual      $actualCount-$actualUniqueCount=$actualDifference"
